@@ -1,0 +1,83 @@
+# 达芬Qi说音频上传界面 - Git 忽略文件
+
+# 环境配置文件
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# API密钥和敏感信息
+*.key
+*.pem
+secrets.json
+config/secrets.js
+
+# 依赖文件
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# 构建输出
+dist/
+build/
+out/
+.next/
+
+# 缓存文件
+.cache/
+.parcel-cache/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统生成的文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 日志文件
+logs/
+*.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+*.temp
+
+# 测试覆盖率
+coverage/
+.nyc_output/
+.coverage/
+
+# 编辑器和IDE文件
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 本地开发服务器文件
+.vercel/
+.netlify/
+
+# 用户上传的文件（如果有本地存储）
+uploads/
+audio-files/
+
+# Supabase本地开发文件
+supabase/.branches
+supabase/.temp
