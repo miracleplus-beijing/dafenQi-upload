@@ -32,7 +32,7 @@
                     <h2 class="upload-title">拖拽文件到此处，或点击选择文件</h2>
                     <p class="upload-desc">支持多文件同时上传</p>
                     <input type="file" id="fileInput" accept=".mp3,.wav" multiple hidden>
-                    <button type="button" class="btn-select" onclick="document.getElementById('fileInput').click()">
+                    <button type="button" class="btn-select" id="selectFileBtn">
                         选择文件
                     </button>
                 </div>
@@ -46,7 +46,113 @@
                 </div>
                 <div class="upload-actions">
                     <button type="button" class="btn-secondary" id="clearBtn">清空列表</button>
-                    <button type="button" class="btn-primary" id="uploadBtn">开始上传</button>
+                    <button type="button" class="btn-primary" id="nextBtn">下一步：填写信息</button>
+                </div>
+            </section>
+
+            <!-- 播客信息表单区域 -->
+            <section class="form-section" id="formSection" style="display: none;">
+                <h3 class="section-title">播客信息</h3>
+                <form id="podcastForm" class="podcast-form">
+                    <!-- 基本信息 -->
+                    <div class="form-group">
+                        <h4 class="form-subtitle">基本信息</h4>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="podcastTitle" class="required">播客标题</label>
+                                <input type="text" id="podcastTitle" name="title" required placeholder="请输入播客标题">
+                                <small class="field-hint">建议包含论文主题关键词</small>
+                            </div>
+                            <div class="form-field">
+                                <label for="channelId" class="required">所属频道</label>
+                                <select id="channelId" name="channel_id" required>
+                                    <option value="">请选择频道</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-field full-width">
+                            <label for="podcastDescription">播客描述</label>
+                            <textarea id="podcastDescription" name="description" placeholder="请描述播客内容、讨论的主要观点等" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- 论文信息 -->
+                    <div class="form-group">
+                        <h4 class="form-subtitle">论文信息</h4>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="paperTitle">论文标题</label>
+                                <input type="text" id="paperTitle" name="paper_title" placeholder="请输入论文标题">
+                            </div>
+                            <div class="form-field">
+                                <label for="paperUrl">论文链接</label>
+                                <input type="url" id="paperUrl" name="paper_url" placeholder="https://arxiv.org/abs/...">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="arxivId">arXiv ID</label>
+                                <input type="text" id="arxivId" name="arxiv_id" placeholder="如：2301.12345">
+                                <small class="field-hint">格式：YYMM.NNNNN</small>
+                            </div>
+                            <div class="form-field">
+                                <label for="doi">DOI</label>
+                                <input type="text" id="doi" name="doi" placeholder="如：10.1000/182">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="authors">作者</label>
+                                <input type="text" id="authors" name="authors" placeholder="多个作者用逗号分隔">
+                                <small class="field-hint">如：张三, 李四, John Smith</small>
+                            </div>
+                            <div class="form-field">
+                                <label for="institution">主要研究机构</label>
+                                <input type="text" id="institution" name="institution" placeholder="如：清华大学">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="publishDate">发布日期</label>
+                                <input type="date" id="publishDate" name="publish_date">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 频道封面预览 -->
+                    <div class="form-group">
+                        <h4 class="form-subtitle">频道封面</h4>
+                        <div class="cover-display" id="coverDisplay">
+                            <div class="cover-preview" id="coverPreview">
+                                <div class="cover-placeholder">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                                        <polyline points="21,15 16,10 5,21"/>
+                                    </svg>
+                                    <p>频道封面将自动显示</p>
+                                    <small>根据选择的频道自动使用对应封面</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="backToFilesBtn">返回文件选择</button>
+                        <button type="button" class="btn-primary" id="previewBtn">预览并确认</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 预览确认区域 -->
+            <section class="preview-section" id="previewSection" style="display: none;">
+                <h3 class="section-title">上传预览</h3>
+                <div class="preview-content" id="previewContent">
+                    <!-- 预览内容将通过JavaScript动态生成 -->
+                </div>
+                <div class="preview-actions">
+                    <button type="button" class="btn-secondary" id="backToFormBtn">返回编辑</button>
+                    <button type="button" class="btn-primary" id="confirmUploadBtn">确认上传</button>
                 </div>
             </section>
 

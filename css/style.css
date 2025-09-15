@@ -8,7 +8,7 @@
 }
 
 body {
-    font-family: 'SF Pro', 'WeChat Sans Std', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Times New Roman', serif;
     background-color: #ffffff;
     color: rgba(0, 0, 0, 0.90);
     line-height: 1.6;
@@ -385,6 +385,13 @@ body {
     color: rgba(0, 0, 0, 0.5);
 }
 
+.progress-item-speed {
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.4);
+    font-family: 'Times New Roman', monospace;
+    margin-top: 2px;
+}
+
 .progress-item-bar {
     width: 120px;
     height: 6px;
@@ -398,8 +405,36 @@ body {
     height: 100%;
     background-color: #0884FF;
     border-radius: 3px;
-    transition: width 0.3s ease;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     width: 0%;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-item-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+    );
+    transform: translateX(-100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 .progress-item-fill.success {
@@ -585,6 +620,359 @@ body {
 }
 
 /* 响应式优化 */
+/* 表单样式 */
+.form-section {
+    margin-bottom: 32px;
+}
+
+.podcast-form {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+}
+
+.form-group {
+    margin-bottom: 32px;
+}
+
+.form-subtitle {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.90);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f8f8f8;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-field label {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.90);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.form-field label.required::after {
+    content: '*';
+    color: #FF4444;
+    margin-left: 4px;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    background-color: #F2F2F7;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.90);
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: #0884FF;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(8, 132, 255, 0.1);
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.field-hint {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 4px;
+}
+
+/* 封面上传样式 */
+/* 频道封面显示 */
+.cover-display {
+    display: flex;
+    flex-direction: column;
+}
+
+.cover-preview {
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.cover-preview .channel-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.cover-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #F2F2F7;
+    border: 2px dashed #0884FF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.cover-placeholder:hover {
+    background-color: rgba(8, 132, 255, 0.05);
+    border-color: #0666CC;
+}
+
+.cover-placeholder svg {
+    color: #0884FF;
+    margin-bottom: 8px;
+}
+
+.cover-placeholder p {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.cover-placeholder small {
+    font-size: 12px;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 表单操作区域 */
+.form-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    padding-top: 16px;
+    border-top: 1px solid #f8f8f8;
+}
+
+/* 预览区域样式 */
+.preview-section {
+    margin-bottom: 32px;
+}
+
+.preview-content {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.preview-item {
+    padding: 20px;
+    border-bottom: 1px solid #f8f8f8;
+}
+
+.preview-item:last-child {
+    border-bottom: none;
+}
+
+.preview-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.preview-cover {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: #F2F2F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preview-basic {
+    flex: 1;
+}
+
+.preview-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.90);
+    margin-bottom: 4px;
+}
+
+.preview-channel {
+    font-size: 14px;
+    color: #0884FF;
+    margin-bottom: 8px;
+}
+
+.preview-description {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 1.4;
+}
+
+.preview-section-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.90);
+    margin-bottom: 12px;
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.preview-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-field-label {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 2px;
+}
+
+.preview-field-value {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.90);
+    word-break: break-word;
+}
+
+.preview-field-value.empty {
+    color: rgba(0, 0, 0, 0.3);
+    font-style: italic;
+}
+
+.preview-audio {
+    background-color: #F2F2F7;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+}
+
+.preview-audio-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.preview-audio-icon {
+    width: 32px;
+    height: 32px;
+    background-color: #0884FF;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.preview-audio-details {
+    flex: 1;
+}
+
+.preview-audio-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.90);
+    margin-bottom: 2px;
+}
+
+.preview-audio-meta {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.preview-audio-player {
+    width: 100%;
+    height: 32px;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    padding: 20px;
+    background-color: #F8F9FA;
+}
+
+/* 信息消息样式 */
+.info-message {
+    background-color: rgba(8, 132, 255, 0.1);
+    color: #0884FF;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .preview-cover {
+        align-self: center;
+    }
+}
+
 @media (max-width: 480px) {
     .header {
         padding: 24px 0;
@@ -616,5 +1004,14 @@ body {
     .results-summary {
         flex-direction: column;
         gap: 16px;
+    }
+
+    .podcast-form {
+        padding: 16px;
+    }
+
+    .form-actions,
+    .preview-actions {
+        flex-direction: column;
     }
 }

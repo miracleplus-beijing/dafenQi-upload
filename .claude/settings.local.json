@@ -3,7 +3,8 @@
     "allow": [
       "Read(//d/University/Sophomore/MiraclePlus/Signal-Product/达芬Qi说/**)",
       "mcp__supabase__list_tables",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "mcp__supabase__execute_sql"
     ],
     "deny": [],
     "ask": []
